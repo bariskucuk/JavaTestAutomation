@@ -17,6 +17,9 @@ public class WebAppPage {
     @FindBy(xpath = "//div[@class=\"panel-body\"]/div[5]/div[1]/span/span/button")
     WebElement CopyLink;
 
+    @FindBy(xpath = "//div[@class=\"panel-body\"]/div[5]/div[1]/span/input")
+    WebElement ShareAbleLinkText;
+
     public void enableWebApp()
     {
         try {
@@ -36,6 +39,7 @@ public class WebAppPage {
 
     public void openWebAppUsingShareableLink()
     {
+        /*
         try {
             copiedLink= (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
         } catch (HeadlessException e) {
@@ -45,6 +49,8 @@ public class WebAppPage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
+        copiedLink = ShareAbleLinkText.getAttribute("value");
         Browser.openNewWindowAndNavigateToUrl(copiedLink);
     }
 }

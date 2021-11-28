@@ -5,10 +5,11 @@ import org.openqa.selenium.support.FindBy;
 import java.util.concurrent.TimeUnit;
 
 public class MyEventsPage {
-    @FindBy(xpath = "//*[@id=\"rs-wrapper\"]/article/div/div/div[2]/div/div/div/div[2]/div/h3")
+    @FindBy(xpath = "//h3[text()=\"Test Automation Assessment Event\"]")
     WebElement EventName;
 
-    //@FindBy(xpath = "//h3[text()=\"Test Automation Assessment Event\"]")
+    //@FindBy(xpath = "//*[@id=\"rs-wrapper\"]/article/div/div/div[2]/div/div/div/div[2]/div/h3")
+
     public void clickEvent()
     {
         try {

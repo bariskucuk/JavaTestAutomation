@@ -7,6 +7,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -65,6 +66,7 @@ public class Browser {
 
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
+
         //driver.manage().timeouts().pageLoadTimeout(pageLoadTimeout, TimeUnit.SECONDS);
         //driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
 

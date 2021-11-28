@@ -46,7 +46,12 @@ public class WallPage {
         clickNewPostLink();
         setNewPostText();
         AddImage();
-        FileUpload.sendKeys(System.getProperty("user.dir") +"/data/SocioSymbol.png");
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        FileUpload.sendKeys("https://paganresearch.io/images/socioevents.png");
         SaveImage.click();
         UploadImage.click();
         try {
