@@ -2,10 +2,11 @@ package com.sociotestautomation.pages.attendeeside;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class WallPage {
-    String postText="Automated Test";
+    public static String postText;
     @FindBy(xpath = "//div[@data-testid=\"new-post-text\"]")
     WebElement NewPostLink;
 
@@ -33,6 +34,8 @@ public class WallPage {
     }
     public void setNewPostText()
     {
+        postText = UUID.randomUUID().toString();
+
         NewPostText.sendKeys(postText);
     }
 

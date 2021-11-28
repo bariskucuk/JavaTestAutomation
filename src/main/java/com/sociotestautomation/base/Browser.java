@@ -5,6 +5,7 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -25,6 +26,7 @@ public class Browser {
     public static RemoteWebDriver driver;
     public static Properties prop;
     public static DesiredCapabilities caps;
+    public static Actions builder;
 
     public static final String AUTOMATE_USERNAME = "alihanozbayrak1";
     public static final String AUTOMATE_ACCESS_KEY = "yYzukxkJ3sAqxT1pyW7B";
@@ -55,7 +57,7 @@ public class Browser {
         caps.setCapability("browser_version", "latest");
         caps.setCapability("os", "Windows");
         caps.setCapability("name", "BStack-[Java] Tests");
-        caps.setCapability("build", "BStackBuildAutomationAssessment");
+        caps.setCapability("build", "BuildTestAutomationAssessmentProject");
 
         URL remoteDriver= null;
         try {
@@ -65,6 +67,8 @@ public class Browser {
         }
         driver = new RemoteWebDriver(remoteDriver, caps);
         driver.setFileDetector(new LocalFileDetector());
+        builder = new Actions(driver);
+
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
 

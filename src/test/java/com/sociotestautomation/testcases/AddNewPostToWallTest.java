@@ -1,6 +1,7 @@
 package com.sociotestautomation.testcases;
 
 import com.sociotestautomation.base.Browser;
+import com.sociotestautomation.pages.attendeeside.WallPage;
 import com.sociotestautomation.pages.plannerside.PlannerPages;
 import com.sociotestautomation.pages.attendeeside.AttendeePages;
 import org.apache.commons.io.FileUtils;
@@ -42,13 +43,12 @@ public class AddNewPostToWallTest extends TestBase {
         Browser.getToWindow(plannerWindow);
         PlannerPages.manageEventPage().clickEditEvent();
         PlannerPages.featuresPage().clickWallEditButton();
-
+        Assert.assertEquals(PlannerPages.featuresPage().getFirstItemText(), AttendeePages.wallPage().postText);
         try {
             TimeUnit.SECONDS.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //Assert.assertTrue(Pages.registrationPage().formSuccessfullySubmitted(), "Yeni kullanıcı oluşturma hata verdi.");
         newPostAddedSuccessfully=true;
         TestBase.markTestStatus("passed","A new post to wall with image is successfully added!",driver);
     }
@@ -56,19 +56,12 @@ public class AddNewPostToWallTest extends TestBase {
     @AfterMethod
     public void TearDown(ITestResult result){
         if(ITestResult.FAILURE==result.getStatus()){
-            try{
-                TakesScreenshot screenshot=(TakesScreenshot) driver;
-                File src=screenshot.getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(src, new File(System.getProperty("user.dir") +"/screenshot/"+result.getName()+".png"));
-                //Logging.logger.info("Ekran goruntusu alindi");
-            }catch (Exception e){
-                //Logging.logger.info("Ekran goruntusu alinamadi "+e.getMessage());
-            }
+            TestBase.markTestStatus("failed","A new post to wall with image test is failed!",driver);
         }
+        //TO remove the wall post if it is added successfully
         if(newPostAddedSuccessfully)
         {
-            //driver.get("https://checkout.hepsiburada.com/sepetim");
-
+            PlannerPages.featuresPage().DeleteAWallPost();
             try {
                 TimeUnit.SECONDS.sleep(20);
             } catch (InterruptedException e) {

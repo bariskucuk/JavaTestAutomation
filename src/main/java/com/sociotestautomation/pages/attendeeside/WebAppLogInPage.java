@@ -26,6 +26,11 @@ public class WebAppLogInPage {
 
     public void logIn()
     {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Email.sendKeys(LogInPage.EmailConfig);
         ContinueButton.click();
         /*WebDriverWait wait = new WebDriverWait(Browser.driver, Duration.ofSeconds(5))
