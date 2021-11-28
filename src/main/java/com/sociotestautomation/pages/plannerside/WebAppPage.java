@@ -1,6 +1,9 @@
 package com.sociotestautomation.pages.plannerside;
 
 import com.sociotestautomation.base.Browser;
+import com.sociotestautomation.pages.attendeeside.WallPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -8,11 +11,10 @@ import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.util.List;
 
 public class WebAppPage {
     String copiedLink;
-    @FindBy(xpath = "//div[@class=\"panel-body\"]/div[2]/div/div/div/div/div/span[1]")
-    WebElement IsWebAppEnabled;
 
     @FindBy(xpath = "//div[@class=\"panel-body\"]/div[5]/div[1]/span/span/button")
     WebElement CopyLink;
@@ -20,14 +22,30 @@ public class WebAppPage {
     @FindBy(xpath = "//div[@class=\"panel-body\"]/div[5]/div[1]/span/input")
     WebElement ShareAbleLinkText;
 
+    @FindBy(xpath = "//button[text()=\"Save\"]")
+    WebElement SaveButton;
+
+    public void clickSave()
+    {
+        SaveButton.click();
+    }
     public void enableWebApp()
     {
+        List<WebElement> switchElements;
+
+        switchElements = Browser.driver.findElements(By.xpath("//div[contains(@class,\"bootstrap-switch-off\")]"));
+
         try {
-            IsWebAppEnabled.click();
+            if(switchElements.size()>1)
+                switchElements.get(0).click();
         }
         catch(org.openqa.selenium.StaleElementReferenceException ex)
         {
-            IsWebAppEnabled.click();
+            if(switchElements.size()>1)
+                switchElements.get(0).click();
+        }
+        catch (NoSuchElementException e)
+        {
         }
 
     }

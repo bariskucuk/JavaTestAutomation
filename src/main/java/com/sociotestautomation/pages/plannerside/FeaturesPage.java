@@ -1,5 +1,9 @@
 package com.sociotestautomation.pages.plannerside;
 import com.sociotestautomation.base.Browser;
+import com.sociotestautomation.pages.attendeeside.WallPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,26 +17,34 @@ public class FeaturesPage {
     @FindBy(xpath = "//h4[text()=\"Wall\"]")
     WebElement WallButton;
 
-    @FindBy(xpath = "//*[@id=\"componentItemsList\"]/div/div[1]/div[2]/div/div/span")
-    WebElement FirstItemText;
-
-    @FindBy(xpath = "//*[@id=\"dropdown-button\"]")
+    @FindBy(xpath = "//button[@id=\"dropdown-button\"]")
     WebElement DropDownButton;
 
+    //@FindBy(xpath = "//ul[@class=\"dropdown-menu\"]/li[2]/a")
     @FindBy(xpath = "//a[text()=\"Delete\"]")
     WebElement DeleteButton;
 
-    @FindBy(xpath = "//a[text()=\"Delete\"]")
+    @FindBy(xpath = "//button[text()=\"Yes\"]")
     WebElement YesButtonToConfirmDelete;
 
-    public String getFirstItemText()
+    WebElement SearchItem;
+
+    public boolean isItemInTheList(String SearchString)
     {
         try {
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return FirstItemText.getText();
+
+        try {
+            SearchItem = Browser.driver.findElement(By.xpath("//span[@title=\""+ WallPage.postText +"\"]"));
+        } catch (NoSuchElementException e)
+        {
+            return false;
+        }
+
+        return true;
     }
     public void clickWallEditButton(){
         try {
@@ -52,8 +64,16 @@ public class FeaturesPage {
     }
 
     public void DeleteAWallPost(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         DropDownButton.click();
-        DeleteButton.click();
+
+        JavascriptExecutor jse = (JavascriptExecutor) Browser.driver;
+        jse.executeScript("arguments[0].click();", DeleteButton);
+        //DeleteButton.click();
         YesButtonToConfirmDelete.click();
     }
 }

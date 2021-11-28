@@ -82,6 +82,7 @@ public class Browser {
     {
         Browser.driver.switchTo().newWindow(WindowType.WINDOW);
         Browser.driver.get(url);
+        driver.manage().window().maximize();
     }
 
     public static void getToWindow(String windowHandle)
