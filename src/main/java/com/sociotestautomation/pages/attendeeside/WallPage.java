@@ -51,7 +51,7 @@ public class WallPage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        FileUpload.sendKeys("https://paganresearch.io/images/socioevents.png");
+        FileUpload.sendKeys(System.getProperty("user.dir") +"/data/SocioSymbol.png");
         SaveImage.click();
         UploadImage.click();
         try {

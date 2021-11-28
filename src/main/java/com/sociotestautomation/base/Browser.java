@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,7 +22,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class Browser {
-    public static WebDriver driver;
+    public static RemoteWebDriver driver;
     public static Properties prop;
     public static DesiredCapabilities caps;
 
@@ -63,7 +64,7 @@ public class Browser {
             e.printStackTrace();
         }
         driver = new RemoteWebDriver(remoteDriver, caps);
-
+        driver.setFileDetector(new LocalFileDetector());
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
 
