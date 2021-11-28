@@ -28,7 +28,7 @@ public class AddNewPostToWallTest extends TestBase {
     @Test(priority = 0, description = "Add a new post to wall with image", groups = {"FunctionalTest", "Group1"})
     public void addNewPostToWallTest() {
         String plannerWindow = driver.getWindowHandle();
-        //Logging.logger.info("TEST STARTED");
+
         PlannerPages.singUpPage().clickLogInLink();
         PlannerPages.logInPage().LogIn();
         PlannerPages.myEventsPage().clickEvent();
@@ -50,7 +50,7 @@ public class AddNewPostToWallTest extends TestBase {
         }
         //Assert.assertTrue(Pages.registrationPage().formSuccessfullySubmitted(), "Yeni kullanıcı oluşturma hata verdi.");
         newPostAddedSuccessfully=true;
-        //Logging.logger.info("TEST ENDED");
+        TestBase.markTestStatus("passed","A new post to wall with image is successfully added!",driver);
     }
 
     @AfterMethod
