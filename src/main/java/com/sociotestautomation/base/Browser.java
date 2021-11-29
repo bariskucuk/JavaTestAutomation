@@ -19,12 +19,9 @@ public class Browser {
     public static DesiredCapabilities caps;
     public static Actions builder;
 
-    public static final String AUTOMATE_USERNAME = "alihanozbayrak1";
-    public static final String AUTOMATE_ACCESS_KEY = "yYzukxkJ3sAqxT1pyW7B";
-    public static final String URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
-
-    public Browser(){}
-
+    public static String AUTOMATE_USERNAME;
+    public static String AUTOMATE_ACCESS_KEY;
+    public static String URL;
 
     public static void initialization() {
         try {
@@ -47,7 +44,11 @@ public class Browser {
         caps.setCapability("name", prop.getProperty("name"));
         caps.setCapability("build", prop.getProperty("build"));
 
-        URL remoteDriver= null;
+        AUTOMATE_USERNAME = prop.getProperty("browserstack_Username");
+        AUTOMATE_ACCESS_KEY = prop.getProperty("browserstack_Access_Key");
+        URL = "https://" + AUTOMATE_USERNAME + ":" + AUTOMATE_ACCESS_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
+        URL remoteDriver = null;
         try {
             remoteDriver = new URL(URL);
         } catch (MalformedURLException e) {
