@@ -46,18 +46,15 @@ public class Browser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String browserName = prop.getProperty("browser");
-        int pageLoadTimeout =  Integer.parseInt(prop.getProperty("pageLoadTimeout"));
-        int implicitWait = Integer.parseInt(prop.getProperty("implicitWait"));
 
         caps = new DesiredCapabilities();
-        caps.setCapability("os_version", "10");
-        caps.setCapability("resolution", "1920x1080");
-        caps.setCapability("browser", browserName);
-        caps.setCapability("browser_version", "latest");
-        caps.setCapability("os", "Windows");
-        caps.setCapability("name", "BStack-[Java] Tests");
-        caps.setCapability("build", "BuildTestAutomationAssessmentProject");
+        caps.setCapability("os_version", prop.getProperty("os_version"));
+        caps.setCapability("resolution", prop.getProperty("resolution"));
+        caps.setCapability("browser", prop.getProperty("browser"));
+        caps.setCapability("browser_version", prop.getProperty("browser_version"));
+        caps.setCapability("os", prop.getProperty("os"));
+        caps.setCapability("name", prop.getProperty("name"));
+        caps.setCapability("build", prop.getProperty("build"));
 
         URL remoteDriver= null;
         try {
@@ -71,9 +68,6 @@ public class Browser {
 
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
-
-        //driver.manage().timeouts().pageLoadTimeout(pageLoadTimeout, TimeUnit.SECONDS);
-        //driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
 
         driver.get(prop.getProperty("url"));
     }

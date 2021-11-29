@@ -20,7 +20,6 @@ public class FeaturesPage {
     @FindBy(xpath = "//button[@id=\"dropdown-button\"]")
     WebElement DropDownButton;
 
-    //@FindBy(xpath = "//ul[@class=\"dropdown-menu\"]/li[2]/a")
     @FindBy(xpath = "//a[text()=\"Delete\"]")
     WebElement DeleteButton;
 
@@ -73,7 +72,6 @@ public class FeaturesPage {
 
         JavascriptExecutor jse = (JavascriptExecutor) Browser.driver;
         jse.executeScript("arguments[0].click();", DeleteButton);
-        //DeleteButton.click();
         YesButtonToConfirmDelete.click();
     }
 }
